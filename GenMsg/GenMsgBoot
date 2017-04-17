@@ -1,0 +1,36 @@
+#! /bin/sh
+# /etc/init.d/GenMsgBoot
+
+### BEGIN INIT INFO
+# Provides: GenMsgBoot
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start GeneratorMSGalerts.py at boot time
+# Description: Start GeneratorMSGalerts.py at boot time.
+### END INIT INFO
+
+USER=pi
+HOME=/home/pi
+
+export USER HOME
+
+case "$1" in
+ start)
+  echo "Starting GeneratorMSGalerts.py"
+  su - $USER -c "/home/pi/Documents/raspberrypi/GenMsg/GeneratorMSGalerts.py"
+  ;;
+
+ stop)
+  echo "Stopping VNC Server"
+  /home/pi/Documents/raspberrypi/GenMsg/GeneratorMSGalerts.py -kill :1
+  ;;
+
+ *)
+  echo "Usage: /etc/init.d/GenMsgBoot {start|stop}"
+  exit 1
+  ;;
+esac
+
+exit 0
