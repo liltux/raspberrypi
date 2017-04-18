@@ -26,13 +26,13 @@ to the owners email account and domain.
 
 def email_text(message):
     curtime = time.strftime("%c")
-    phonenum = open("/home/pi/GenMsg/account")
-    phnumber = account.readline()
-    provider = open("/home/pi/GenMsg/domain")
-    carrier = provider.readline()
-    emailaddr = phnumber.rstrip("\r\n")+"@"+carrier.rstrip("\r\n")
+    account = open("/home/pi/GenMsg/account")
+    accountout = account.readline()
+    domain = open("/home/pi/GenMsg/domain")
+    domainout = domain.readline()
+    emailaddr = accountout.rstrip("\r\n")+"@"+domainout.rstrip("\r\n")
 
-    fromaddr = "someemail@address.com"
+    fromaddr = "someemailaddress"
     toaddr = emailaddr
     msg = MIMEMultipart()
     msg['From'] = fromaddr
@@ -56,67 +56,67 @@ def main():
     BS3 = True
     BS4 = True
 
-    while(1):                  # Create an infinite Loop
-        if GPIO.input(switch1)==0:            # Look for switch 1 position
-            if BS1==False:                # If the switch is on
-                sleep(.5)             # Delay
-            elif BS1==True:                         # If the switch is off
-                email_text('Generator is running') #Run function to send txt
-                BS1=False               # Set Flag to show switch is now on
-                sleep(10)
-        if GPIO.input(switch1)==1:            # Look for switch 1 position
-            if BS1==True:                # If the switch is off
-                sleep(.5)             # Delay
-            elif BS1==False:                         # If the switch is on
-                email_text('Generator has stopped') #Run function to send txt
-                BS1=True               # Set Flag to show switch is now Off
-                sleep(10)
-        if GPIO.input(switch2)==1:            # Look for swtich 2 position
-            if BS2==True:                # If the switch 2 is on
-                sleep(.5)             # Delay
-            elif BS2==False:                         # If the switch is off
-                email_text('Generator Alarm Warning is Reset') #Run function to send txt
-                BS2=True               # Set Flag to show switch is now On
-                sleep(10)
-        if GPIO.input(switch2)==0:            # Look for switch 2 position
-            if BS2==False:                # If the switch is off
-                sleep(.5)             # Delay
-            elif BS2==True:                         # If the switch is on
-                email_text('Generator has an Alarm Warning') #Run function to send txt
-                BS2=False               # Set Flag to show switch is now Off
-                sleep(10)
-        if GPIO.input(switch3)==1:
-            if BS3==True:
-                sleep(.5)
-            elif BS3==False:
-                email_text('Generator Alarm Shutdown is Reset')
-                BS3=True
-                sleep(10)
-        if GPIO.input(switch3)==0:
-            if BS3==False:
-                sleep(.5)
-            elif BS3==True:
-                email_text('Generator has an Alarm Shutdown')
-                BS3=False
-                sleep(10)
-        if GPIO.input(switch4)==1:
-            if BS4==True:
-                sleep(.5)
-            elif BS4==False:
-                email_text('Generator is NOT in Automatic Operation')
-                BS4=True
-                sleep(10)
-        if GPIO.input(switch4)==0:
-            if BS4==False:
-                sleep(.5)
-            elif BS4==True:
-                email_text('Generator is in Automatic Operation')
-                BS4=False
-                sleep(10)
+    try:
+        while(1):                  # Create an infinite Loop
+            if GPIO.input(switch1)==0:            # Look for switch 1 position
+                if BS1==False:                # If the switch is on
+                    sleep(.5)             # Delay
+                elif BS1==True:                         # If the switch is off
+                    email_text('Generator is running') #Run function to send txt
+                    BS1=False               # Set Flag to show switch is now on
+                    sleep(10)
+            if GPIO.input(switch1)==1:            # Look for switch 1 position
+                if BS1==True:                # If the switch is off
+                    sleep(.5)             # Delay
+                elif BS1==False:                         # If the switch is on
+                    email_text('Generator has stopped') #Run function to send txt
+                    BS1=True               # Set Flag to show switch is now Off
+                    sleep(10)
+            if GPIO.input(switch2)==1:            # Look for swtich 2 position
+                if BS2==True:                # If the switch 2 is on
+                    sleep(.5)             # Delay
+                elif BS2==False:                         # If the switch is off
+                    email_text('Generator Alarm Warning is Reset') #Run function to send txt
+                    BS2=True               # Set Flag to show switch is now On
+                    sleep(10)
+            if GPIO.input(switch2)==0:            # Look for switch 2 position
+                if BS2==False:                # If the switch is off
+                    sleep(.5)             # Delay
+                elif BS2==True:                         # If the switch is on
+                    email_text('Generator has an Alarm Warning') #Run function to send txt
+                    BS2=False               # Set Flag to show switch is now Off
+                    sleep(10)
+            if GPIO.input(switch3)==1:
+                if BS3==True:
+                    sleep(.5)
+                elif BS3==False:
+                    email_text('Generator Alarm Shutdown is Reset')
+                    BS3=True
+                    sleep(10)
+            if GPIO.input(switch3)==0:
+                if BS3==False:
+                    sleep(.5)
+                elif BS3==True:
+                    email_text('Generator has an Alarm Shutdown')
+                    BS3=False
+                    sleep(10)
+            if GPIO.input(switch4)==1:
+                if BS4==True:
+                    sleep(.5)
+                elif BS4==False:
+                    email_text('Generator is NOT in Automatic Operation')
+                    BS4=True
+                    sleep(10)
+            if GPIO.input(switch4)==0:
+                if BS4==False:
+                    sleep(.5)
+                elif BS4==True:
+                    email_text('Generator is in Automatic Operation')
+                    BS4=False
+                    sleep(10)
                 
     except KeyboardInterrupt:
         GPIO.cleanup()
         
 if __name__=="__main__":
     main()
-    
