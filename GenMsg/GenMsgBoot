@@ -19,12 +19,12 @@ export USER HOME
 case "$1" in
  start)
   echo "Starting GeneratorMSGalerts.py"
-  su - $USER -c "/home/pi/Documents/raspberrypi/GenMsg/GeneratorMSGalerts.py" &
+  su - $USER -c "/home/pi/GenMsg/GeneratorMSGalerts.py" &
   ;;
 
  stop)
-  echo "Stopping VNC Server"
-  /home/pi/Documents/raspberrypi/GenMsg/GeneratorMSGalerts.py -kill :1
+  echo "Stopping GeneratorMSGalerts.py"
+  /home/pi/Documents/GenMsg/GeneratorMSGalerts.py -kill :1
   ;;
 
  *)
