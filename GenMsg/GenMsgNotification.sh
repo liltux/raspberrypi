@@ -12,6 +12,6 @@ sleep 10
 
 uptime > genmsgnotify
 who >> genmsgnotify
-ifconfig wlan0 | grep -2a wlan0 >> genmsgnotify
+#ifconfig wlan0 | grep -2a wlan0 >> genmsgnotify
 #ifconfig eth0 | grep -2a eth0 >> genmsgnotify
 cat genmsgnotify | mail -s "genmsgnotify" account@domain
