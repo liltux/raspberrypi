@@ -13,10 +13,10 @@ switch2=31                 # Switch 2 is connected to physical pin 31
 switch3=12                 # Switch 3 is connected to physical pin 12
 switch4=37                 # Switch 4 is connected to physical pin 37
 
-GPIO.setup(switch1,GPIO.IN) # Make switch 1 an input
-GPIO.setup(switch2,GPIO.IN) # Make switch 2 an input
-GPIO.setup(switch3,GPIO.IN) # Make switch 3 an input
-GPIO.setup(switch4,GPIO.IN) # Make switch 4 an input
+GPIO.setup(switch1,GPIO.IN,pull_up_down=GPIO.PUD_UP) # Make switch 1 an input
+GPIO.setup(switch2,GPIO.IN,pull_up_down=GPIO.PUD_UP) # Make switch 2 an input
+GPIO.setup(switch3,GPIO.IN,pull_up_down=GPIO.PUD_UP) # Make switch 3 an input
+GPIO.setup(switch4,GPIO.IN,pull_up_down=GPIO.PUD_UP) # Make switch 4 an input
 
 ''' Text Message email Function
 Below is the function to send an email / text message to the 
